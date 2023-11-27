@@ -65,6 +65,16 @@ def create():
 
     return render_template('create.html')
 
+@app.route('/healthz')
+def healthcheck():
+    response = app.response_class(
+            response=json.dumps({"result": "OK - healthy"}),
+            status=200,
+            mimetype='application/json'
+    )
+
+    return response
+
 # start the application on port 3111
 if __name__ == "__main__":
    app.run(host='0.0.0.0', port='3111')
