@@ -18,6 +18,13 @@ def get_post(post_id):
     connection.close()
     return post
 
+# Function to get all posts
+def get_posts():
+    connection = get_db_connection()
+    posts = connection.execute('SELECT * FROM posts').fetchall()
+    connection.close()
+    return posts
+
 # Define the Flask application
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
@@ -25,9 +32,7 @@ app.config['SECRET_KEY'] = 'your secret key'
 # Define the main route of the web application 
 @app.route('/')
 def index():
-    connection = get_db_connection()
-    posts = connection.execute('SELECT * FROM posts').fetchall()
-    connection.close()
+    posts = get_posts()
     return render_template('index.html', posts=posts)
 
 # Define how each individual article is rendered 
@@ -73,18 +78,17 @@ def healthcheck():
             status=200,
             mimetype='application/json'
     )
-
     return response
 
 # Metrics endpoint
 @app.route('/metrics')
 def metrics():
+    posts = get_posts()
     response = app.response_class(
-            response=json.dumps({"status":"success","code":0,"data":{"db_connection_count": 1, "post_count": 7}}),
+            response=json.dumps({"status":"success","code":0,"data":{"db_connection_count": 1, "post_count": len(posts)}}),
             status=200,
             mimetype='application/json'
     )
-
     return response
 
 # start the application on port 3111
