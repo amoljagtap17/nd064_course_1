@@ -2,7 +2,7 @@
 
 # TODO: insert the docker build command
 
-# navigate to the priject directory and run the below command
+# navigate to the project directory and run the below command
 
 docker build -t techtrends .
 
@@ -16,6 +16,41 @@ docker run -d -p 7111:3111 techtrends
 
 # TODO: insert the docker logs command
 
+# 674a9c1d3 is the start of the container id after executing the docker run command
+
+docker logs 674a9c1d3
+
 ## Logs from the container running the TechTrends application
 
 # TODO: paste logs from the Docker container
+
+- Serving Flask app 'app' (lazy loading)
+- Environment: production
+  WARNING: This is a development server. Do not use it in a production deployment.
+  Use a production WSGI server instead.
+- Debug mode: off
+  INFO:werkzeug:11/27/2023, 15:20:42, _ Running on all addresses.
+  WARNING: This is a development server. Do not use it in a production deployment.
+  INFO:werkzeug:11/27/2023, 15:20:42, _ Running on http://172.17.0.2:3111/ (Press CTRL+C to quit)
+  INFO:werkzeug:11/27/2023, 15:21:04, 172.17.0.1 - - [27/Nov/2023 15:21:04] "GET / HTTP/1.1" 200 -
+  INFO:werkzeug:11/27/2023, 15:21:04, 172.17.0.1 - - [27/Nov/2023 15:21:04] "GET /static/css/main.css HTTP/1.1" 200 -
+  INFO:werkzeug:11/27/2023, 15:21:04, 172.17.0.1 - - [27/Nov/2023 15:21:04] "GET /favicon.ico HTTP/1.1" 404 -
+  INFO:app:11/27/2023, 15:22:12, Article "2020 CNCF Annual Report" retrieved!
+  INFO:werkzeug:11/27/2023, 15:22:12, 172.17.0.1 - - [27/Nov/2023 15:22:12] "GET /1 HTTP/1.1" 200 -
+  INFO:werkzeug:11/27/2023, 15:22:12, 172.17.0.1 - - [27/Nov/2023 15:22:12] "GET /static/css/main.css HTTP/1.1" 304 -
+  INFO:werkzeug:11/27/2023, 15:22:14, 172.17.0.1 - - [27/Nov/2023 15:22:14] "GET /create HTTP/1.1" 200 -
+  INFO:werkzeug:11/27/2023, 15:22:14, 172.17.0.1 - - [27/Nov/2023 15:22:14] "GET /static/css/main.css HTTP/1.1" 304 -
+  INFO:app:11/27/2023, 15:22:24, Article with title "2023 Post 1" is created!
+  INFO:werkzeug:11/27/2023, 15:22:24, 172.17.0.1 - - [27/Nov/2023 15:22:24] "POST /create HTTP/1.1" 302 -
+  INFO:werkzeug:11/27/2023, 15:22:24, 172.17.0.1 - - [27/Nov/2023 15:22:24] "GET / HTTP/1.1" 200 -
+  INFO:werkzeug:11/27/2023, 15:22:24, 172.17.0.1 - - [27/Nov/2023 15:22:24] "GET /static/css/main.css HTTP/1.1" 304 -
+  INFO:app:11/27/2023, 15:22:27, Article "2023 Post 1" retrieved!
+  INFO:werkzeug:11/27/2023, 15:22:27, 172.17.0.1 - - [27/Nov/2023 15:22:27] "GET /7 HTTP/1.1" 200 -
+  INFO:werkzeug:11/27/2023, 15:22:27, 172.17.0.1 - - [27/Nov/2023 15:22:27] "GET /static/css/main.css HTTP/1.1" 304 -
+  INFO:app:11/27/2023, 15:22:30, About Us page is retrieved!
+  INFO:werkzeug:11/27/2023, 15:22:30, 172.17.0.1 - - [27/Nov/2023 15:22:30] "GET /about HTTP/1.1" 200 -
+  INFO:werkzeug:11/27/2023, 15:22:30, 172.17.0.1 - - [27/Nov/2023 15:22:30] "GET /static/css/main.css HTTP/1.1" 304 -
+  INFO:werkzeug:11/27/2023, 15:22:35, 172.17.0.1 - - [27/Nov/2023 15:22:35] "GET /metrics HTTP/1.1" 200 -
+  INFO:werkzeug:11/27/2023, 15:22:42, 172.17.0.1 - - [27/Nov/2023 15:22:42] "GET /metrics HTTP/1.1" 200 -
+  INFO:werkzeug:11/27/2023, 15:22:45, 172.17.0.1 - - [27/Nov/2023 15:22:45] "GET / HTTP/1.1" 200 -
+  INFO:werkzeug:11/27/2023, 15:22:45, 172.17.0.1 - - [27/Nov/2023 15:22:45] "GET /static/css/main.css HTTP/1.1" 304 -
