@@ -7,11 +7,13 @@ import logging
 import sys
 
 # custom logger configuration
-logger=logging.getLogger('app')
-log_format='INFO:%(name)s:%(asctime)s, %(message)s'
-date_format='%m/%d/%Y, %H:%M:%S'
+log_format = 'INFO:%(name)s:%(asctime)s, %(message)s'
+date_format = '%m/%d/%Y, %H:%M:%S'
 
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG, format=log_format, datefmt=date_format)
+
+logger=logging.getLogger('app')
+logger.setLevel(logging.DEBUG)
 
 # Total amount of connections to the database
 db_connection_count = 0
@@ -63,6 +65,7 @@ def index():
 def post(post_id):
     post = get_post(post_id)
     if post is None:
+      logger.debug('Article with id "{0}" not found!'.format(post_id))
       return render_template('404.html'), 404
     else:
       logger.info('Article "{0}" retrieved!'.format(post['title']))
@@ -71,6 +74,7 @@ def post(post_id):
 # Define the About Us page
 @app.route('/about')
 def about():
+    logger.info('About Us page is retrieved!')
     return render_template('about.html')
 
 # Define the post creation functionality 
@@ -88,6 +92,8 @@ def create():
                          (title, content))
             connection.commit()
             close_db_connection(connection)
+
+            logger.info('Article with title "{0}" is created!'.format(title))
 
             return redirect(url_for('index'))
 
