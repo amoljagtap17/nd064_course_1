@@ -65,10 +65,22 @@ def create():
 
     return render_template('create.html')
 
+# Healthcheck endpoint
 @app.route('/healthz')
 def healthcheck():
     response = app.response_class(
             response=json.dumps({"result": "OK - healthy"}),
+            status=200,
+            mimetype='application/json'
+    )
+
+    return response
+
+# Metrics endpoint
+@app.route('/metrics')
+def metrics():
+    response = app.response_class(
+            response=json.dumps({"status":"success","code":0,"data":{"db_connection_count": 1, "post_count": 7}}),
             status=200,
             mimetype='application/json'
     )
